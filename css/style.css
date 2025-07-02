@@ -1,0 +1,135 @@
+body {
+	margin: 0;
+	background-color: #d8dadb;
+	text-align: center;
+	font-family: 'Trebuchet MS', sans-serif;
+}
+
+header {
+	background-color: #6e6e0e;
+	color: rgb(255, 255, 255);
+}
+
+img {
+	height: auto;
+	width: 200px;
+	padding: 2rem 3rem;
+	transition: transform .2s; /* Animation */
+}
+
+.img:hover {
+	transform: scale(1.4);
+}
+
+
+
+.container {
+	margin: 0 20%;
+}
+
+
+
+.muted {
+	color: rgb(151, 151, 151);
+	font-weight: 100;
+}
+
+#text-display {
+	font-size: 40px;
+	color: white;
+	font-style: italic;
+	
+}
+
+.logo {
+	height: 75px;
+	width: auto;
+	margin: 0;
+	padding: 0;
+	z-index: 1;
+	
+}
+
+#stripe-bar {
+	color: darkgreen;
+	height: 35px;
+	justify-content: space-around;
+
+}
+
+#stripe {
+	background-color: white;
+}
+
+.fade {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.hide {
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+}
+
+
+
+.flex {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+}
+
+.img-area {
+	flex-wrap: wrap;
+	justify-content: center;
+} 
+
+
+#menu-bar {
+	height: 80px;
+	
+}
+
+#attemp {
+	position: fixed;
+	border: 1px solid darkgreen;
+	color: darkgreen;
+	padding: 0;
+	margin: 0;
+}
+
+#countAttempt {
+	padding: 0;
+	margin: 0;
+}
+
+.selected {
+	color: white;
+	background: #6e6e0e;
+}
+
+button {
+	border: 0;
+	padding: 0 10px; 
+	background: none;
+	text-transform: uppercase;
+	height: 35px;
+	font-weight: 600;
+	color: #6e6e0e;
+	letter-spacing: 1px;
+	font-size: inherit;
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s; 
+	outline: none;
+}
+
+button:hover {
+	color: white;
+	background: #6e6e0e;
+	
+}
+

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>How well do you know?</title>
+	<!-- favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="images/favicon_io/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="images/favicon_io/favicon-32x32.png">
+	<!-- <link rel="icon" type="image/png" sizes="16x16" href="images/favicon_io/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest"> -->
+	<!-- CSS -->
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<header id="header">
+		<div id="menu-bar" class="container flex">
+			<div class="flex">
+				<img class="logo" src="images/siri-logo-icon.png" alt="siri-logo">
+				<h2>How well do you know ?</h2>
+			</div>
+
+
+			<p>" I am craving for <span id="text-display">Som-Tum</span>.. "</p>
+		</div>
+		
+		<div id="stripe">
+			<div id="stripe-bar" class="container flex">
+				<div>
+					<button class="mode selected">Thai food</button>
+					<button class="mode muted" disabled>German food</button>
+				</div>
+				<span id="message" class="muted"> - please click on the correct picture - </span>
+				
+				<button id="restart">Try Again</button>
+			</div>
+		</div>
+
+		<div id="attemp">
+			<h5>Attempt:</h5>
+			<h1 id="countAttempt">00</h1>
+		</div>
+
+	</header>
+
+	<main>
+		<div class="container">
+			<div class="img-area flex">
+				<div class="img box1"></div>
+				<div class="img box2"></div>
+				<div class="img box3"></div>
+				<div class="img box4"></div>
+				<div class="img box5"></div>
+				<div class="img box6"></div>
+				<div class="img box7"></div>
+				<div class="img box8"></div>
+				<div class="img box9"></div>
+			</div>
+		</div>
+	</main>
+	
+	<footer id="footer">
+		<p class="muted">This project is created by <strong>© Siri-Glück</strong> aiming for utiliting knowledges of DOM
+			Manipulation in Vanilla JS </p>
+	</footer>
+
+	<script src="js/main.js"></script>
+</body>
+
+</html>
