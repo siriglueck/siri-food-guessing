@@ -1,109 +1,122 @@
 /* === start script === */
-
 window.onload = function () {
   /* === variables === */
-
   const thaiFoodList = [
-    "1-som-tum.webp",
-    "2-tom-kha-kai.webp",
-    "3-khao-niew-ma-muang.webp",
-    "4-fried-rice.webp",
-    "5-green-curry.webp",
-    "6-khao-mun-kai.webp",
-    "7-pad-thai.webp",
-    "8-pad-kra-pow.webp",
-    "9-tom-yum-goong.webp",
+    "Som-Tum",
+    "Tom-Kha-Kai",
+    "Khao-Niew-Ma-Muang",
+    "Fried-Rice",
+    "Green-Curry",
+    "Khao-Mun-Kai",
+    "Pad-Thai",
+    "Pad-Kra-Pow",
+    "Tom-Yum-Goong",
   ];
 
   const germanFoodList = [
-    "1-schnitzel.webp",
-    "2-bratwurst.webp",
-    "3-currywurst.webp",
-    "4-pretzel.webp",
-    "5-sauerkraut.webp",
-    "6-mett.webp",
+    "Schnitzel",
+    "Bratwurst",
+    "Currywurst",
+    "Pretzel",
+    "Sauerkraut",
+    "Mett",
   ];
 
+  const restartButton = document.getElementById("restart");
   let modeButtons = document.querySelectorAll(".mode");
   let attempt = 0;
-
   let foodList = thaiFoodList;
   let folderName = "/thai-food-webp/";
   let box;
+  let wantedDish;
 
-  setMode();
   setImages(foodList, folderName);
+  setMode();
+  wantedDish = randomDish();
 
-    function countAttempt() {
+  /* === Methods === */
+  function countAttempt() {
     const countAttempt = document.getElementById("countAttempt");
     attempt++;
     console.log(countAttempt);
     countAttempt.innerText = attempt;
   }
-   
-  function setMode(){
+
+  function setMode() {
     for (let i = 0; i < modeButtons.length; i++) {
-        modeButtons[i].addEventListener("click", function() {
-          modeButtons[0].classList.remove("selected");
-          modeButtons[1].classList.remove("selected");
-          this.classList.add("selected");
-          if (this.textContent === "Thai food") {
-            foodList = thaiFoodList;
-            folderName = "/thai-food-webp/";
-            console.log(foodList);
-            console.log(folderName);
-            reset();
-            setImages(foodList, folderName);
-          } else {
-            foodList = germanFoodList;
-            folderName = "/german-food-webp/";
-            console.log(foodList);
-            console.log(folderName);
-            reset();
-            setImages(foodList, folderName);
-          }
-		  });
-     }
-  }
-
-  const restartButton = document.getElementById('restart');
-
-  restartButton.addEventListener('click', function(){
-    reset();
-    setImages(foodList, folderName);
-  });
-
-function reset() {
-  foodList.forEach((imgName, index) => {
-    const box = document.querySelector(".box" + (index + 1));
-    box.classList.remove("img");
-    
-    // Remove all img elements inside the box
-    const imgs = box.querySelectorAll("img");
-    imgs.forEach(img => img.remove());
-  });
-}
-
-
-  // loop for generating images
-  function setImages(foodList, folderName) {
-    foodList.forEach((imgName, index) => {
-      box = document.querySelector(".box" + (index + 1));
-      box.classList.add("img");
-      const img = document.createElement("img");
-      img.src = "images" + folderName + imgName;
-      img.alt = imgName;
-      box.appendChild(img);
-    });
-
-    const images = document.querySelectorAll(".img");
-    console.log(images);
-    for (let i = 0; i < images.length; i++) {
-      images[i].addEventListener("click", function () {
-        countAttempt();
-        images[i].classList.add("fade");
-        images[i].classList.add("hide");
+      modeButtons[i].addEventListener("click", function () {
+        modeButtons[0].classList.remove("selected");
+        modeButtons[1].classList.remove("selected");
+        this.classList.add("selected");
+        if (this.textContent === "Thai food") {
+          foodList = thaiFoodList;
+          folderName = "/thai-food-webp/";
+          reset();
+        } else {
+          foodList = germanFoodList;
+          folderName = "/german-food-webp/";
+          reset();
+        }
       });
     }
   }
+
+  
+
+  restartButton.addEventListener("click", function () {
+     reset();
+  });
+
+  function reset() {
+   const imgParent = document.querySelectorAll('.img-parent');
+   wantedDish = randomDish();
+   shuffle();
+   for (let i = 0; i < 9; i++) {
+     imgParent[i].removeChild(imgParent[i].firstChild); 
+   }
+   setImages(foodList, folderName);
+  }
+
+
+  function setImages(foodList, folderName) {
+    // a loop for generating images
+    for (let i = 0; i < 9; i++) {
+      box = document.querySelector(".box" + (i + 1));
+      const img = document.createElement("img");
+      img.src = "images" + folderName + foodList[i] + ".webp";
+      img.alt = foodList[i];
+      box.appendChild(img);
+      box.classList.add("fx");
+    }
+    // a loop for adding .fade and .hide classes to image
+    const imageEffects = document.querySelectorAll(".fx");
+    for (let i = 0; i < 9; i++) {
+      imageEffects[i].addEventListener("click", function () {
+        countAttempt();
+        imageEffects[i].classList.add("fade");
+        imageEffects[i].classList.add("hide");
+      });
+    }
+  }
+  
+  function randomDish() {
+    let randNum = Math.floor(Math.random() * 9);
+    const textDisplay = document.getElementById('text-display');
+    textDisplay.innerText = foodList[randNum];
+    return foodList[randNum];
+  }
+
+  function shuffle(){
+    for (let i = 0; i < 9; i++) {
+      let randPointer = Math.floor(Math.random() * 9);
+      // take this to store temporily somewhere
+      let temp = foodList[randPointer];
+      // take the 1 item to random position
+      foodList[randPointer] = foodList[i]
+      foodList[i] = temp;
+    }
+    return foodList;
+  }
+
+
 };

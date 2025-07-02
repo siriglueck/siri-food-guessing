@@ -12,14 +12,14 @@ header {
 	width: 100%; */
 }
 
-img {
+#img-area img {
 	height: auto;
 	width: 200px;
 	padding: 2rem 3rem;
 	transition: transform .2s; /* Animation */
 }
 
-.img:hover {
+#img-area img:hover {
 	transform: scale(1.4);
 }
 
@@ -40,11 +40,13 @@ h1, h5 {
 }
 
 #text-display {
-	font-size: 40px;
+	font-size: 45px;
 	color: white;
 	font-style: italic;
-	
+	vertical-align: baseline;
+	padding: 0 15px;
 }
+
 
 .logo {
 	height: 75px;
@@ -79,7 +81,6 @@ h1, h5 {
 }
 
 
-
 .flex {
 	display: flex;
 	justify-content: space-between;
@@ -87,7 +88,7 @@ h1, h5 {
 	text-align: center;
 }
 
-.img-area {
+#img-area {
 	flex-wrap: wrap;
 	justify-content: center;
 	padding: 5px;
