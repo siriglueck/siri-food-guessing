@@ -16,7 +16,7 @@ header {
 	height: auto;
 	width: 200px;
 	padding: 2rem 3rem;
-	transition: transform .2s; /* Animation */
+	transition: transform .1s; /* Animation */
 }
 
 #img-area img:hover {

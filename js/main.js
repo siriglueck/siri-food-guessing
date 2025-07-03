@@ -20,10 +20,13 @@ window.onload = function () {
     "Pretzel",
     "Sauerkraut",
     "Mett",
+    "Schweinshaxe",
+    "Broetchein",
+    "Kartoffelsalat"
   ];
 
   const restartButton = document.getElementById("restart");
-  let modeButtons = document.querySelectorAll(".mode");
+  const modeButtons = document.querySelectorAll(".mode");
   let attempt = 0;
   let foodList = thaiFoodList;
   let folderName = "/thai-food-webp/";
@@ -38,7 +41,6 @@ window.onload = function () {
   function countAttempt() {
     const countAttempt = document.getElementById("countAttempt");
     attempt++;
-    console.log(countAttempt);
     countAttempt.innerText = attempt;
   }
 
@@ -61,62 +63,65 @@ window.onload = function () {
     }
   }
 
-  
-
   restartButton.addEventListener("click", function () {
-     reset();
+    reset();
   });
 
   function reset() {
-   const imgParent = document.querySelectorAll('.img-parent');
-   wantedDish = randomDish();
-   shuffle();
-   for (let i = 0; i < 9; i++) {
-     imgParent[i].removeChild(imgParent[i].firstChild); 
-   }
-   setImages(foodList, folderName);
+    const countAttempt = document.getElementById("countAttempt");
+    const imgParent = document.querySelectorAll(".img-parent");
+    wantedDish = randomDish();
+    shuffle();
+    for (let i = 0; i < 9; i++) {
+      imgParent[i].removeChild(imgParent[i].firstChild);
+      imgParent[i].classList.remove("hide");
+    }
+    setImages(foodList, folderName);
+    attempt = 0;
+    countAttempt.innerText = 0;
   }
-
 
   function setImages(foodList, folderName) {
     // a loop for generating images
     for (let i = 0; i < 9; i++) {
       box = document.querySelector(".box" + (i + 1));
+
+      box.innerHTML = "";  // Remove old content completely
+
       const img = document.createElement("img");
       img.src = "images" + folderName + foodList[i] + ".webp";
       img.alt = foodList[i];
       box.appendChild(img);
       box.classList.add("fx");
-    }
-    // a loop for adding .fade and .hide classes to image
-    const imageEffects = document.querySelectorAll(".fx");
-    for (let i = 0; i < 9; i++) {
-      imageEffects[i].addEventListener("click", function () {
+
+      const cleanBox = box.cloneNode(true);
+      box.replaceWith(cleanBox);
+      //replaceWith helps to fix counting attempt bugs caused by repeatedly assign addEventlistener (stacking). JS doesn’t automatically remove old ones.
+      cleanBox.addEventListener("click", function () {
         countAttempt();
-        imageEffects[i].classList.add("fade");
-        imageEffects[i].classList.add("hide");
+        cleanBox.classList.add("fade", "hide");
       });
+
     }
   }
-  
+
+
   function randomDish() {
     let randNum = Math.floor(Math.random() * 9);
-    const textDisplay = document.getElementById('text-display');
+    const textDisplay = document.getElementById("text-display");
     textDisplay.innerText = foodList[randNum];
     return foodList[randNum];
   }
 
-  function shuffle(){
+  function shuffle() {
     for (let i = 0; i < 9; i++) {
       let randPointer = Math.floor(Math.random() * 9);
       // take this to store temporily somewhere
       let temp = foodList[randPointer];
       // take the 1 item to random position
-      foodList[randPointer] = foodList[i]
+      foodList[randPointer] = foodList[i];
       foodList[i] = temp;
     }
     return foodList;
   }
-
-
 };
