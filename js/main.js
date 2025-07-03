@@ -22,20 +22,23 @@ window.onload = function () {
     "Mett",
     "Schweinshaxe",
     "Broetchein",
-    "Kartoffelsalat"
+    "Kartoffelsalat",
   ];
 
   const restartButton = document.getElementById("restart");
   const modeButtons = document.querySelectorAll(".mode");
+  const message = document.getElementById("message");
   let attempt = 0;
   let foodList = thaiFoodList;
   let folderName = "/thai-food-webp/";
   let box;
   let wantedDish;
+  const defaultMessage = "- please click on the correct picture -";
 
   setImages(foodList, folderName);
   setMode();
   wantedDish = randomDish();
+  reset();
 
   /* === Methods === */
   function countAttempt() {
@@ -79,6 +82,8 @@ window.onload = function () {
     setImages(foodList, folderName);
     attempt = 0;
     countAttempt.innerText = 0;
+    message.innerText = defaultMessage;
+    message.style.color = "grey";
   }
 
   function setImages(foodList, folderName) {
@@ -86,7 +91,7 @@ window.onload = function () {
     for (let i = 0; i < 9; i++) {
       box = document.querySelector(".box" + (i + 1));
 
-      box.innerHTML = "";  // Remove old content completely
+      box.innerHTML = ""; // Remove old content completely
 
       const img = document.createElement("img");
       img.src = "images" + folderName + foodList[i] + ".webp";
@@ -98,14 +103,23 @@ window.onload = function () {
       box.replaceWith(cleanBox);
       //replaceWith helps to fix counting attempt bugs caused by repeatedly assign addEventlistener (stacking). JS doesn’t automatically remove old ones.
       cleanBox.addEventListener("click", function () {
-        countAttempt();
-        cleanBox.classList.add("fade", "hide");
-      });
+        const img = this.querySelector("img");
 
+        if (img.alt == wantedDish) {
+          countAttempt();
+          cleanBox.classList.add("fade", "hide");
+          wantedDish = randomDish();
+          message.innerText = "Yummy! come eat with me :)";
+          message.style.color = "blue";
+        } else {
+          message.innerText = "Oops, that's not what I want :(";
+          message.style.color = "red";
+        }
+      });
     }
   }
 
-
+  // keyword: shuffle-without-repeat
   function randomDish() {
     let randNum = Math.floor(Math.random() * 9);
     const textDisplay = document.getElementById("text-display");

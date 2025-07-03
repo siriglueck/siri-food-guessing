@@ -14,7 +14,7 @@ header {
 
 #img-area img {
 	height: auto;
-	width: 200px;
+	width: 70%;
 	padding: 2rem 3rem;
 	transition: transform .1s; /* Animation */
 }
@@ -32,7 +32,16 @@ h1, h5 {
 	margin: 0 20%;
 }
 
-
+.img-parent {
+  width: 250px;       
+  height: 250px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
 
 .muted {
 	color: rgb(151, 151, 151);
