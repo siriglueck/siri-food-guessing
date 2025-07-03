@@ -28,19 +28,25 @@ window.onload = function () {
   const restartButton = document.getElementById("restart");
   const modeButtons = document.querySelectorAll(".mode");
   const message = document.getElementById("message");
+  const attemptBadge = document.getElementById("attempt");
+  const defaultMessage = "- Please click on the right picture -";
   let attempt = 0;
   let foodList = thaiFoodList;
   let folderName = "/thai-food-webp/";
   let box;
   let wantedDish;
-  const defaultMessage = "- please click on the correct picture -";
 
-  setImages(foodList, folderName);
-  setMode();
-  wantedDish = randomDish();
-  reset();
+  init();
 
   /* === Methods === */
+
+  function init() {
+    setImages(foodList, folderName);
+    setMode();
+    wantedDish = randomDish();
+    reset();
+  }
+
   function countAttempt() {
     const countAttempt = document.getElementById("countAttempt");
     attempt++;
@@ -75,6 +81,7 @@ window.onload = function () {
     const imgParent = document.querySelectorAll(".img-parent");
     wantedDish = randomDish();
     shuffle();
+    playSound("reset");
     for (let i = 0; i < 9; i++) {
       imgParent[i].removeChild(imgParent[i].firstChild);
       imgParent[i].classList.remove("hide");
@@ -107,11 +114,16 @@ window.onload = function () {
 
         if (img.alt == wantedDish) {
           countAttempt();
+          playSound("correct");
+          flashAttemptColor("green");
           cleanBox.classList.add("fade", "hide");
           wantedDish = randomDish();
           message.innerText = "Yummy! come eat with me :)";
-          message.style.color = "blue";
+          message.style.color = "green";
         } else {
+          countAttempt();
+          playSound("wrong");
+          flashAttemptColor("red");
           message.innerText = "Oops, that's not what I want :(";
           message.style.color = "red";
         }
@@ -137,5 +149,17 @@ window.onload = function () {
       foodList[i] = temp;
     }
     return foodList;
+  }
+
+  function playSound(inputSound) {
+    var sound = new Audio("sounds/" + inputSound + ".mp3");
+    sound.play();
+  }
+
+  function flashAttemptColor(Color) {
+    attemptBadge.classList.add(Color);
+    setTimeout(function () {
+      attemptBadge.classList.remove(Color);
+    }, 200);
   }
 };

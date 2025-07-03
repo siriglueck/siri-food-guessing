@@ -39,7 +39,7 @@ h1, h5 {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #ccc;
+  border: 0;
   box-sizing: border-box;
 }
 
@@ -58,7 +58,7 @@ h1, h5 {
 
 
 .logo {
-	height: 75px;
+	height: 70px;
 	width: auto;
 	margin: 0;
 	padding: 0;
@@ -68,8 +68,9 @@ h1, h5 {
 
 #stripe-bar {
 	color: darkgreen;
-	height: 35px;
-	justify-content: space-around;
+	height: 30px;
+	justify-content: space-between;
+	padding: 0 60px 0 75px;
 
 }
 
@@ -109,14 +110,25 @@ h1, h5 {
 	
 }
 
-#attemp {
+.green {
+	background-color: green !important;
+}
+
+.red {
+	background-color: red !important;
+}
+
+
+
+#attempt {
 	position: fixed;
-	/* border: 1px solid darkgreen; */
-	color: darkgreen;
-	padding: 0;
+	color: white;
+	background-color: grey;
+	padding: 5px;
+	border-radius: 5px;
 	margin: 0;
 	right: 22%;
-	top: 140px;
+	top: 130px;
 }
 
 #countAttempt {
@@ -131,14 +143,14 @@ h1, h5 {
 
 button {
 	border: 0;
-	padding: 0 10px; 
+	padding: 0 20px; 
 	background: none;
 	text-transform: uppercase;
-	height: 35px;
+	height: 30px;
 	font-weight: 600;
 	color: darkgreen;
 	letter-spacing: 1px;
-	font-size: inherit;
+	font-size: 90%;
 	transition: all 0.5s;
 	-webkit-transition: all 0.2s;
 	-moz-transition: all 0.2s; 
@@ -150,4 +162,5 @@ button:hover {
 	background: #6e6e0e;
 	
 }
+
 
