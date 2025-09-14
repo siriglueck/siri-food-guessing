@@ -1,39 +1,38 @@
 body {
-	margin: 0;
-	background-color: #d8dadb;
-	text-align: center;
-	font-family: 'Trebuchet MS', sans-serif;
+  margin: 0;
+  background-color: #d8dadb;
+  text-align: center;
+  font-family: "Trebuchet MS", sans-serif;
 }
 
 header {
-	background-color: #6e6e0e;
-	color: rgb(255, 255, 255);
-	/* position: fixed;
-	width: 100%; */
+  background-color: #6e6e0e;
+  color: rgb(255, 255, 255);
 }
 
 #img-area img {
-	height: auto;
-	width: 70%;
-	padding: 2rem 3rem;
-	transition: transform .1s; /* Animation */
+  height: auto;
+  width: 70%;
+  padding: 2rem 3rem;
+  transition: transform 0.1s; /* Animation */
 }
 
 #img-area img:hover {
-	transform: scale(1.4);
+  transform: scale(1.4);
 }
 
-h1, h5 {
-	padding: 0;
-	margin: 0;
+h1,
+h5 {
+  padding: 0;
+  margin: 0;
 }
 
 .container {
-	margin: 0 20%;
+  margin: 0 20%;
 }
 
 .img-parent {
-  width: 250px;       
+  width: 250px;
   height: 250px;
   overflow: hidden;
   display: flex;
@@ -44,38 +43,33 @@ h1, h5 {
 }
 
 .muted {
-	color: rgb(151, 151, 151);
-	font-weight: 100;
+  color: rgb(151, 151, 151);
+  font-weight: 100;
 }
 
 #text-display {
-	font-size: 45px;
-	color: white;
-	font-style: italic;
-	vertical-align: baseline;
-	padding: 0 15px;
+  font-size: 45px;
+  color: white;
+  font-style: italic;
+  vertical-align: baseline;
+  padding: 0 15px;
 }
 
-
 .logo {
-	height: 70px;
-	width: auto;
-	margin: 0;
-	padding: 0;
-	z-index: 1;
-	
+  height: 5rem;
+  width: auto;
+  padding: 1rem;
 }
 
 #stripe-bar {
-	color: darkgreen;
-	height: 30px;
-	justify-content: space-between;
-	padding: 0 60px 0 75px;
-
+  color: darkgreen;
+  height: auto;
+  justify-content: start;
+  padding: 0 60px 0 75px;
 }
 
 #stripe {
-	background-color: white;
+  background-color: white;
 }
 
 .fade {
@@ -85,82 +79,97 @@ h1, h5 {
 }
 
 .hide {
-	opacity: 0;
-	visibility: hidden;
-	pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
-
 .flex {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
 }
 
 #img-area {
-	flex-wrap: wrap;
-	justify-content: center;
-	padding: 5px;
-} 
-
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 5px;
+}
 
 #menu-bar {
-	height: 80px;
-	
+  height: auto;
 }
 
 .green {
-	background-color: green !important;
+  background-color: green !important;
 }
 
 .red {
-	background-color: red !important;
+  background-color: red !important;
 }
 
-
-
 #attempt {
-	position: fixed;
-	color: white;
-	background-color: grey;
-	padding: 5px;
-	border-radius: 5px;
-	margin: 0;
-	right: 22%;
-	top: 130px;
+  position: fixed;
+  color: white;
+  background-color: grey;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 0;
+  right: 10%;
+  bottom: 5%;
 }
 
 #countAttempt {
-	padding: 0;
-	margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .selected {
-	color: white;
-	background: #6e6e0e;
+  color: white;
+  background: #6e6e0e;
 }
 
 button {
-	border: 0;
-	padding: 0 20px; 
-	background: none;
-	text-transform: uppercase;
-	height: 30px;
-	font-weight: 600;
-	color: darkgreen;
-	letter-spacing: 1px;
-	font-size: 90%;
-	transition: all 0.5s;
-	-webkit-transition: all 0.2s;
-	-moz-transition: all 0.2s; 
-	outline: none;
+  border: 0;
+  padding: 0 20px;
+  background: none;
+  text-transform: uppercase;
+  height: 30px;
+  font-weight: 600;
+  color: darkgreen;
+  letter-spacing: 1px;
+  font-size: 90%;
+  transition: all 0.5s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  outline: none;
 }
 
 button:hover {
-	color: white;
-	background: #6e6e0e;
-	
+  color: white;
+  background: #6e6e0e;
 }
 
+@media only screen and (max-width: 880px) {
+  body {
+    background-color: lightblue;
+  }
 
+  .flex {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #stripe-bar {
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+  }
+
+  .mode {
+    width: 100%;
+  }
+}
