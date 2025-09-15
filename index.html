@@ -31,13 +31,12 @@
 			<div id="stripe-bar" class="container flex">
 				<button class="mode selected">Thai food</button>
 				<button class="mode">German food</button>
-				<button id="restart" class="mode">Try Again</button>
 			</div>
 		</div>
 
 		<div id="attempt" class="">
 			<h5>Attempt:</h5>
-			<h1 id="countAttempt"></h1>
+			<h1 id="countAttempt">0</h1>
 		</div>
 
 	</header>
@@ -62,10 +61,15 @@
 		</div>
 	</main>
 
-	<footer id="footer">
-		<p class="muted">This project is created by <strong>© Siri-Glück</strong> aiming for utiliting knowledges of DOM
-			Manipulation in Vanilla JS </p>
-	</footer>
+	<!-- popup -->
+	<div id="restart_popup" class="fade hide">
+		<div>
+			<h2>Thanks for playing !</h2>
+			<p>Do you want to play it again ?</p>
+			<button id="restartButton">Restart</button>
+		</div>
+	</div>
+
 
 	<script src="js/main.js"></script>
 </body>

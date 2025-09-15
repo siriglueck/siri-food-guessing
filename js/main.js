@@ -4,148 +4,199 @@ window.onload = function () {
 
   const thaiFoodList = [
     {
-      id: 1,
+      id: 0,
       title: "Fired Rice",
       img: "images/thai-food-webp/fried-rice.webp",
     },
     {
-      id: 2,
+      id: 1,
       title: "Pad Thai",
       img: "images/thai-food-webp/pad-thai.webp",
     },
     {
-      id: 3,
+      id: 2,
       title: "Som Tum",
       img: "images/thai-food-webp/som-tum.webp",
     },
     {
-      id: 4,
+      id: 3,
       title: "Tom Yum Goong",
       img: "images/thai-food-webp/tom-yum-goong.webp",
     },
     {
-      id: 5,
+      id: 4,
       title: "Khao Niew Ma Muang",
       img: "images/thai-food-webp/khao-niew-ma-muang.webp",
     },
     {
-      id: 6,
+      id: 5,
       title: "Khao Mun Kai",
       img: "images/thai-food-webp/khao-mun-kai.webp",
     },
     {
-      id: 7,
+      id: 6,
       title: "Green Curry",
       img: "images/thai-food-webp/green-curry.webp",
     },
     {
-      id: 8,
+      id: 7,
       title: "Pad Kra Pow",
       img: "images/thai-food-webp/pad-kra-pow.webp",
     },
     {
-      id: 9,
+      id: 8,
       title: "Tom Kha Kai",
       img: "images/thai-food-webp/tom-kha-kai.webp",
     },
     {
-      id: 10,
+      id: 9,
       title: "Larb Moo",
       img: "images/thai-food-webp/larb-moo.webp",
     },
     {
-      id: 11,
+      id: 10,
       title: "Khao Soi",
       img: "images/thai-food-webp/khao-soi.webp",
     },
     {
-      id: 12,
+      id: 11,
       title: "Massaman Nuea",
       img: "images/thai-food-webp/massaman-nuea.webp",
     },
   ];
 
   const germanFoodList = [
-    "Schnitzel",
-    "Bratwurst",
-    "Currywurst",
-    "Pretzel",
-    "Sauerkraut",
-    "Mett",
-    "Schweinshaxe",
-    "Broetchein",
-    "Kartoffelsalat",
+    {
+      id: 0,
+      title: "Bratwurst",
+      img: "images/german-food-webp/bratwurst.webp",
+    },
+    {
+      id: 1,
+      title: "Brötchen",
+      img: "images/german-food-webp/broetchein.webp",
+    },
+    {
+      id: 3,
+      title: "Currywurst",
+      img: "images/german-food-webp/currywurst.webp",
+    },
+    {
+      id: 2,
+      title: "Kartoffelpuffer",
+      img: "images/german-food-webp/kartoffelpuffer.webp",
+    },
+    {
+      id: 4,
+      title: "Kartoffelsalat",
+      img: "images/german-food-webp/kartoffelsalat.webp",
+    },
+    {
+      id: 5,
+      title: "Mett",
+      img: "images/german-food-webp/mett.webp",
+    },
+    {
+      id: 6,
+      title: "Brezel",
+      img: "images/german-food-webp/brezel.webp",
+    },
+    {
+      id: 7,
+      title: "Sauerkraut",
+      img: "images/german-food-webp/sauerkraut.webp",
+    },
+    {
+      id: 8,
+      title: "Schnitzel",
+      img: "images/german-food-webp/schnitzel.webp",
+    },
+    {
+      id: 9,
+      title: "Schweinshaxe",
+      img: "images/german-food-webp/schweinshaxe.webp",
+    },
+    {
+      id: 10,
+      title: "Knödel",
+      img: "images/german-food-webp/knoedel.webp",
+    },
+    {
+      id: 11,
+      title: "Apfelstrudel",
+      img: "images/german-food-webp/apfelstrudel.webp",
+    },
   ];
-
-  const restartButton = document.getElementById("restart");
+  const countAttemptElement = document.getElementById("countAttempt");
+  const restartButton = document.getElementById("restartButton");
   const modeButtons = document.querySelectorAll(".mode");
   const attemptBadge = document.getElementById("attempt");
+  const popup = document.getElementById("restart_popup");
   const numChoiceBox = 12;
   let attempt = 0;
   let foodList = thaiFoodList;
-  let folderName = "/thai-food-webp/";
   let box;
   let wantedDish;
 
   // an array storing numbers from 0 to 11 (to indicate the index of foodList)
   let numbers = Array.from({ length: 12 }, (_, i) => i);
 
+  setMode();
   init();
 
   /* === Methods === */
 
   function init() {
+    numbers = Array.from({ length: numChoiceBox }, (_, i) => i);
+    attempt = 0;
+    countAttemptElement.innerText = attempt;
+
     shuffle(foodList);
     setImages(foodList);
-    setMode();
     wantedDish = randomDish();
-    // reset();
   }
 
   function countAttempt() {
-    const countAttempt = document.getElementById("countAttempt");
-    attempt++;
-    countAttempt.innerText = attempt;
+    ++attempt;
+    countAttemptElement.innerText = attempt;
   }
 
   function setMode() {
-    for (let i = 0; i < modeButtons.length; i++) {
-      modeButtons[i].addEventListener("click", function () {
-        modeButtons[0].classList.remove("selected");
-        modeButtons[1].classList.remove("selected");
-        this.classList.add("selected");
-        if (this.textContent === "Thai food") {
-          foodList = thaiFoodList;
-          folderName = "/thai-food-webp/";
-        } else {
-          foodList = germanFoodList;
-          folderName = "/german-food-webp/";
-        }
+    modeButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        // Remove "selected" from all buttons
+        modeButtons.forEach((btn) => btn.classList.remove("selected"));
+
+        // Toggle "selected" on the clicked button
+        this.classList.toggle("selected", true); // force add
+
+        // Update food list based on button text
+        foodList =
+          this.textContent === "Thai food" ? thaiFoodList : germanFoodList;
         reset();
       });
-    }
+    });
   }
 
-  restartButton.addEventListener("click", function () {
-    reset();
-  });
+  restartButton.addEventListener("click", reset);
 
   function reset() {
-    const countAttempt = document.getElementById("countAttempt");
     const imgParent = document.querySelectorAll(".img-parent");
-    wantedDish = randomDish();
-    shuffle(foodList);
-    playSound("reset");
     for (let i = 0; i < numChoiceBox; i++) {
       imgParent[i].removeChild(imgParent[i].firstChild);
       imgParent[i].classList.remove("hide");
+
+      const box = document.querySelector(".box" + (i + 1));
+      if (box) {
+        box.onclick = null;
+        box.classList.remove("fade");
+      }
     }
-    setImages(foodList, folderName);
-    attempt = 0;
-    countAttempt.innerText = 0;
+    popup.classList.add("hide");
+    init();
   }
 
-  function setImages(foodList, folderName) {
+  function setImages(foodList) {
     // a loop for generating images
     for (let i = 0; i < numChoiceBox; i++) {
       box = document.querySelector(".box" + (i + 1));
@@ -154,17 +205,17 @@ window.onload = function () {
 
       const img = document.createElement("img");
       //img.src = "images" + folderName + foodList[i] + ".webp";
-      img.src = thaiFoodList[i].img;
+      img.src = foodList[i].img;
       img.alt = foodList[i].title;
       box.appendChild(img);
       box.classList.add("fx");
 
       // game logic assigned to each box
 
-      box.addEventListener("click", function () {
-        const img = this.querySelector("img");
+      box.onclick = function () {
+        const imgElement = this.querySelector("img");
 
-        if (img.alt == wantedDish) {
+        if (imgElement.alt === wantedDish) {
           countAttempt();
           playSound("correct");
           flashAttemptColor("green");
@@ -175,37 +226,35 @@ window.onload = function () {
           playSound("wrong");
           flashAttemptColor("red");
         }
-      });
+      };
     }
   }
 
-  // keyword: shuffle-without-repeat
+  // keyword: shuffle-without-repeat tabindex="-1"
 
   function randomDish() {
     if (numbers.length === 0) {
-      // ❌ ไม่ reset
-      console.log("All dishes have been selected already.");
-      return "No more dishes!";
+      popup.classList.remove("hide");
+    } else {
+      const textDisplay = document.getElementById("text-display");
+
+      // สุ่มตำแหน่งใน numbers
+      const index = Math.floor(Math.random() * numbers.length);
+
+      // ดึง index จริงของอาหาร
+      const foodIndex = numbers[index];
+
+      // ลบออกเพื่อกันซ้ำ
+      numbers.splice(index, 1);
+
+      // แสดงชื่อจานที่อยากกิน
+      textDisplay.innerText = foodList[foodIndex].title;
+
+      console.log("Selected dish:", foodList[foodIndex].title);
+      console.log("Remaining numbers:", numbers);
+
+      return foodList[foodIndex].title;
     }
-
-    const textDisplay = document.getElementById("text-display");
-
-    // สุ่มตำแหน่งใน numbers
-    const index = Math.floor(Math.random() * numbers.length);
-
-    // ดึง index จริงของอาหาร
-    const foodIndex = numbers[index];
-
-    // ลบออกเพื่อกันซ้ำ
-    numbers.splice(index, 1);
-
-    // แสดงชื่อจานที่อยากกิน
-    textDisplay.innerText = foodList[foodIndex].title;
-
-    console.log("Selected dish:", foodList[foodIndex].title);
-    console.log("Remaining numbers:", numbers);
-
-    return foodList[foodIndex].title;
   }
 
   function shuffle(arr) {
