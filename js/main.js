@@ -5,8 +5,8 @@ window.onload = function () {
   const thaiFoodList = [
     {
       id: 0,
-      title: "Fired Rice",
-      img: "images/thai-food-webp/fried-rice.webp",
+      title: "Khao Pad",
+      img: "images/thai-food-webp/khao-pad.webp",
     },
     {
       id: 1,
@@ -138,6 +138,12 @@ window.onload = function () {
   let box;
   let wantedDish;
 
+  // load all sounds at the beginning, reduce delay
+  const soundCorrect = new Audio("sounds/correct.mp3");
+  const soundWrong = new Audio("sounds/wrong.mp3");
+  const soundChangeMode = new Audio("sounds/mode.mp3");
+  const soundWin = new Audio("sounds/winner-game.mp3");
+
   // an array storing numbers from 0 to 11 (to indicate the index of foodList)
   let numbers = Array.from({ length: 12 }, (_, i) => i);
 
@@ -166,6 +172,8 @@ window.onload = function () {
       button.addEventListener("click", function () {
         // Remove "selected" from all buttons
         modeButtons.forEach((btn) => btn.classList.remove("selected"));
+        soundChangeMode.currentTime = 0;
+        soundChangeMode.play();
 
         // Toggle "selected" on the clicked button
         this.classList.toggle("selected", true); // force add
@@ -217,13 +225,15 @@ window.onload = function () {
 
         if (imgElement.alt === wantedDish) {
           countAttempt();
-          playSound("correct");
+          soundCorrect.currentTime = 0;
+          soundCorrect.play();
           flashAttemptColor("green");
           this.classList.add("fade", "hide");
           wantedDish = randomDish();
         } else {
           countAttempt();
-          playSound("wrong");
+          soundWrong.currentTime = 0;
+          soundWrong.play();
           flashAttemptColor("red");
         }
       };
@@ -235,6 +245,7 @@ window.onload = function () {
   function randomDish() {
     if (numbers.length === 0) {
       popup.classList.remove("hide");
+      soundWin.play();
     } else {
       const textDisplay = document.getElementById("text-display");
 
@@ -265,10 +276,10 @@ window.onload = function () {
     return arr;
   }
 
-  function playSound(inputSound) {
-    var sound = new Audio("sounds/" + inputSound + ".mp3");
-    sound.play();
-  }
+  // function playSound(inputSound) {
+  //   var sound = new Audio("sounds/" + inputSound + ".mp3");
+  //   sound.play();
+  // }
 
   function flashAttemptColor(Color) {
     attemptBadge.classList.add(Color);
