@@ -139,10 +139,11 @@ window.onload = function () {
   let wantedDish;
 
   // load all sounds at the beginning, reduce delay
-  const soundCorrect = new Audio("sounds/correct.mp3");
-  const soundWrong = new Audio("sounds/wrong.mp3");
-  const soundChangeMode = new Audio("sounds/mode.mp3");
-  const soundWin = new Audio("sounds/winner-game.mp3");
+  // browser loads .wav faster than .mp3
+  const soundCorrect = new Audio("sounds/correct.wav");
+  const soundWrong = new Audio("sounds/wrong.wav");
+  const soundChangeMode = new Audio("sounds/mode.wav");
+  const soundWin = new Audio("sounds/winner.wav");
 
   // an array storing numbers from 0 to 11 (to indicate the index of foodList)
   let numbers = Array.from({ length: 12 }, (_, i) => i);
