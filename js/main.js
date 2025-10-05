@@ -6,62 +6,62 @@ window.onload = function () {
     {
       id: 0,
       title: "Khao Pad",
-      img: "images/thai-food-webp/khao-pad.webp",
+      imgPath: "images/thai-food-webp/khao-pad.webp",
     },
     {
       id: 1,
       title: "Pad Thai",
-      img: "images/thai-food-webp/pad-thai.webp",
+      imgPath: "images/thai-food-webp/pad-thai.webp",
     },
     {
       id: 2,
       title: "Som Tum",
-      img: "images/thai-food-webp/som-tum.webp",
+      imgPath: "images/thai-food-webp/som-tum.webp",
     },
     {
       id: 3,
       title: "Tom Yum Goong",
-      img: "images/thai-food-webp/tom-yum-goong.webp",
+      imgPath: "images/thai-food-webp/tom-yum-goong.webp",
     },
     {
       id: 4,
       title: "Khao Niew Ma Muang",
-      img: "images/thai-food-webp/khao-niew-ma-muang.webp",
+      imgPath: "images/thai-food-webp/khao-niew-ma-muang.webp",
     },
     {
       id: 5,
       title: "Khao Mun Kai",
-      img: "images/thai-food-webp/khao-mun-kai.webp",
+      imgPath: "images/thai-food-webp/khao-mun-kai.webp",
     },
     {
       id: 6,
       title: "Green Curry",
-      img: "images/thai-food-webp/green-curry.webp",
+      imgPath: "images/thai-food-webp/green-curry.webp",
     },
     {
       id: 7,
       title: "Pad Kra Pow",
-      img: "images/thai-food-webp/pad-kra-pow.webp",
+      imgPath: "images/thai-food-webp/pad-kra-pow.webp",
     },
     {
       id: 8,
       title: "Tom Kha Kai",
-      img: "images/thai-food-webp/tom-kha-kai.webp",
+      imgPath: "images/thai-food-webp/tom-kha-kai.webp",
     },
     {
       id: 9,
       title: "Larb Moo",
-      img: "images/thai-food-webp/larb-moo.webp",
+      imgPath: "images/thai-food-webp/larb-moo.webp",
     },
     {
       id: 10,
       title: "Khao Soi",
-      img: "images/thai-food-webp/khao-soi.webp",
+      imgPath: "images/thai-food-webp/khao-soi.webp",
     },
     {
       id: 11,
       title: "Massaman Nuea",
-      img: "images/thai-food-webp/massaman-nuea.webp",
+      imgPath: "images/thai-food-webp/massaman-nuea.webp",
     },
   ];
 
@@ -69,97 +69,98 @@ window.onload = function () {
     {
       id: 0,
       title: "Bratwurst",
-      img: "images/german-food-webp/bratwurst.webp",
+      imgPath: "images/german-food-webp/bratwurst.webp",
     },
     {
       id: 1,
       title: "Brötchen",
-      img: "images/german-food-webp/broetchein.webp",
+      imgPath: "images/german-food-webp/broetchein.webp",
     },
     {
       id: 3,
       title: "Currywurst",
-      img: "images/german-food-webp/currywurst.webp",
+      imgPath: "images/german-food-webp/currywurst.webp",
     },
     {
       id: 2,
       title: "Kartoffelpuffer",
-      img: "images/german-food-webp/kartoffelpuffer.webp",
+      imgPath: "images/german-food-webp/kartoffelpuffer.webp",
     },
     {
       id: 4,
       title: "Kartoffelsalat",
-      img: "images/german-food-webp/kartoffelsalat.webp",
+      imgPath: "images/german-food-webp/kartoffelsalat.webp",
     },
     {
       id: 5,
       title: "Mett",
-      img: "images/german-food-webp/mett.webp",
+      imgPath: "images/german-food-webp/mett.webp",
     },
     {
       id: 6,
       title: "Brezel",
-      img: "images/german-food-webp/brezel.webp",
+      imgPath: "images/german-food-webp/brezel.webp",
     },
     {
       id: 7,
       title: "Sauerkraut",
-      img: "images/german-food-webp/sauerkraut.webp",
+      imgPath: "images/german-food-webp/sauerkraut.webp",
     },
     {
       id: 8,
       title: "Schnitzel",
-      img: "images/german-food-webp/schnitzel.webp",
+      imgPath: "images/german-food-webp/schnitzel.webp",
     },
     {
       id: 9,
       title: "Schweinshaxe",
-      img: "images/german-food-webp/schweinshaxe.webp",
+      imgPath: "images/german-food-webp/schweinshaxe.webp",
     },
     {
       id: 10,
       title: "Knödel",
-      img: "images/german-food-webp/knoedel.webp",
+      imgPath: "images/german-food-webp/knoedel.webp",
     },
     {
       id: 11,
       title: "Apfelstrudel",
-      img: "images/german-food-webp/apfelstrudel.webp",
+      imgPath: "images/german-food-webp/apfelstrudel.webp",
     },
   ];
+
   const countAttemptElement = document.getElementById("countAttempt");
-  const restartButton = document.getElementById("restartButton");
-  const modeButtons = document.querySelectorAll(".mode");
   const attemptBadge = document.getElementById("attempt");
+  const restartButton = document.getElementById("restartButton");
+  const modeButton = document.querySelectorAll(".mode");
   const popup = document.getElementById("restart_popup");
   const numChoiceBox = 12;
   let attempt = 0;
   let foodList = thaiFoodList;
-  let box;
+  let imageContainer;
   let wantedDish;
 
-  // load all sounds at the beginning, reduce delay
-  // browser loads .wav faster than .mp3
-  const soundCorrect = new Audio("sounds/correct.wav");
-  const soundWrong = new Audio("sounds/wrong.wav");
-  const soundChangeMode = new Audio("sounds/mode.wav");
-  const soundWin = new Audio("sounds/winner.wav");
+  // load all sounds at the beginning, reduce delay once called
+  const soundCorrect = new Audio("sounds/correct.mp3");
+  const soundWrong = new Audio("sounds/wrong.mp3");
+  const soundChangeMode = new Audio("sounds/mode.mp3");
+  const soundWin = new Audio("sounds/winner.mp3");
 
   // an array storing numbers from 0 to 11 (to indicate the index of foodList)
-  let numbers = Array.from({ length: 12 }, (_, i) => i);
+  let arrNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
+  /* === game start === */
   setMode();
   init();
 
   /* === Methods === */
 
   function init() {
-    numbers = Array.from({ length: numChoiceBox }, (_, i) => i);
+    arrNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
     attempt = 0;
     countAttemptElement.innerText = attempt;
 
     shuffle(foodList);
-    setImages(foodList);
+    addImages(foodList);
     wantedDish = randomDish();
   }
 
@@ -169,15 +170,17 @@ window.onload = function () {
   }
 
   function setMode() {
-    modeButtons.forEach((button) => {
+    modeButton.forEach((button) => {
       button.addEventListener("click", function () {
-        // Remove "selected" from all buttons
-        modeButtons.forEach((btn) => btn.classList.remove("selected"));
+        // Remove "selected" from every buttons
+        modeButton.forEach((btn) => btn.classList.remove("selected"));
+
+        // Real time - no echo
         soundChangeMode.currentTime = 0;
         soundChangeMode.play();
 
         // Toggle "selected" on the clicked button
-        this.classList.toggle("selected", true); // force add
+        this.classList.toggle("selected", true); // true - force adding
 
         // Update food list based on button text
         foodList =
@@ -186,8 +189,6 @@ window.onload = function () {
       });
     });
   }
-
-  restartButton.addEventListener("click", reset);
 
   function reset() {
     const imgParent = document.querySelectorAll(".img-parent");
@@ -205,23 +206,23 @@ window.onload = function () {
     init();
   }
 
-  function setImages(foodList) {
-    // a loop for generating images
-    for (let i = 0; i < numChoiceBox; i++) {
-      box = document.querySelector(".box" + (i + 1));
+  restartButton.addEventListener("click", reset);
 
-      box.innerHTML = ""; // Remove old content completely
+  function addImages(foodList) {
+    // a loop for adding images
+    for (let i = 0; i < numChoiceBox; i++) {
+      imageContainer = document.querySelector(".box" + (i + 1));
+
+      imageContainer.innerHTML = ""; // Remove old content completely
 
       const img = document.createElement("img");
-      //img.src = "images" + folderName + foodList[i] + ".webp";
-      img.src = foodList[i].img;
+      img.src = foodList[i].imgPath;
       img.alt = foodList[i].title;
-      box.appendChild(img);
-      box.classList.add("fx");
+      imageContainer.appendChild(img);
+      imageContainer.classList.add("fx");
 
-      // game logic assigned to each box
-
-      box.onclick = function () {
+      // adding game logic to each container
+      imageContainer.onclick = function () {
         const imgElement = this.querySelector("img");
 
         if (imgElement.alt === wantedDish) {
@@ -241,51 +242,46 @@ window.onload = function () {
     }
   }
 
-  // keyword: shuffle-without-repeat tabindex="-1"
-
   function randomDish() {
-    if (numbers.length === 0) {
+    if (arrNumbers.length === 0) {
       popup.classList.remove("hide");
       soundWin.play();
     } else {
       const textDisplay = document.getElementById("text-display");
+      // random one number within the remaining array length
+      const index = Math.floor(Math.random() * arrNumbers.length);
 
-      // สุ่มตำแหน่งใน numbers
-      const index = Math.floor(Math.random() * numbers.length);
+      // point to array
+      const foodIndex = arrNumbers[index];
 
-      // ดึง index จริงของอาหาร
-      const foodIndex = numbers[index];
+      // remove one number (index position) in the array - so it is called only once
+      arrNumbers.splice(index, 1);
 
-      // ลบออกเพื่อกันซ้ำ
-      numbers.splice(index, 1);
-
-      // แสดงชื่อจานที่อยากกิน
+      // display the name of the random dish
       textDisplay.innerText = foodList[foodIndex].title;
 
-      console.log("Selected dish:", foodList[foodIndex].title);
-      console.log("Remaining numbers:", numbers);
+      // for debugging
+      // console.log("Selected dish:", foodList[foodIndex].title);
+      // console.log("Remaining numbers:", arrNumbers);
 
       return foodList[foodIndex].title;
     }
   }
 
+  // keyword: shuffle-without-repeat tabindex="-1"
   function shuffle(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
+      // ES6 switching
       [arr[i], arr[j]] = [arr[j], arr[i]];
     }
     return arr;
   }
 
-  // function playSound(inputSound) {
-  //   var sound = new Audio("sounds/" + inputSound + ".mp3");
-  //   sound.play();
-  // }
-
-  function flashAttemptColor(Color) {
-    attemptBadge.classList.add(Color);
-    setTimeout(function () {
-      attemptBadge.classList.remove(Color);
+  function flashAttemptColor(color) {
+    attemptBadge.classList.add(color);
+    setTimeout(() => {
+      attemptBadge.classList.remove(color);
     }, 200);
   }
 };
